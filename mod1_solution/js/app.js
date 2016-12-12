@@ -23,14 +23,12 @@
 
 		function getFilteredList(){
 			var items = $scope.lunchList.split(",");
-			console.log(items);
+			var itemsFiltered = [];
 			for(var i=0; i < items.length ;i++){
-				console.log("item " + i + " before "+items[i]);
-				if(items[i] == "") items.splice(i-1,1);
-				console.log("item " + i + " after "+items[i]);
-				console.log(items);
-			}
-			return items;
+				var trimmedItem = items[i].trim();				
+				if(trimmedItem != "") itemsFiltered.push(trimmedItem);
+			} 
+			return itemsFiltered;
 		}
 	}
 
