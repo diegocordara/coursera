@@ -8,6 +8,7 @@
 	function LunchCheckController($scope){
 		$scope.lunchList = "";
 		$scope.resultMsg = "";
+		$scope.isValidQuery = false;
 
 		$scope.check = function(){
 			var items = getFilteredList();
@@ -15,10 +16,13 @@
 			console.log(items);
 			if(items.length == 0){
 				$scope.resultMsg = "Please, enter data first";
+				$scope.isValidQuery = false;
 			}else if(items.length <= 3){
 				$scope.resultMsg = "Enjoy!";
+				$scope.isValidQuery = true;
 			}else{
 				$scope.resultMsg = "Too much!";
+				$scope.isValidQuery = true;
 			}
 		}
 
