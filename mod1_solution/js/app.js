@@ -13,9 +13,8 @@
 		$scope.check = function(){
 			var items = getFilteredList();
 			$scope.lunchList = items;
-			console.log(items);
 			if(items.length == 0){
-				$scope.resultMsg = "Please, enter data first";
+				$scope.resultMsg = "Please, enter valid data first";
 				$scope.isValidQuery = false;
 			}else if(items.length <= 3){
 				$scope.resultMsg = "Enjoy!";
