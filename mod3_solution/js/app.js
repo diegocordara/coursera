@@ -27,14 +27,24 @@
 			//Retrieve menu items. $http
 			//Make the search 
 			//Retrieve filtered list (promise)
-			console.log("SearchTerm: ",searchTerm);
+			//console.log("SearchTerm: ",searchTerm);
+			console.log([{item1:'elem1'},{item2:'elem2'}]);
 		};
 	}
 
 	function FoundItemsDirective(){
 		var ddo = {
-
+			scope={
+				found: "<foundItems"
+			},
+			controller: FoundItemsDirectiveController,
+			bindToController: true,
+			controllerAs: 'ctrl'
 		};
 		return ddo;
+	};
+
+	function FoundItemsDirectiveController(){
+		console.log(ctrl.found);
 	};
 })();
