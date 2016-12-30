@@ -14,14 +14,15 @@
 		var service = MenuSearchService;
 
 		searcher.searchTerm = "";
-		searcher.found = function(){
+		searcher.found;
+		searcher.find = function(){
 			service.getMatchedMenuItems(searcher.searchTerm)
 			.then(function(data){
 				if(typeof(data.status) != 'undefined'){
 					console.log("Error: ",data.status + " " + data.statusText);
 				}else{
-
 					console.log(data);
+					searcher.found = data;
 				}
 			});
 		};
@@ -64,10 +65,9 @@
 	function FoundItemsDirective(){
 		var ddo = {
 			scope:{
-				foundItems: "=found"//,
-				//onRemove:"&onRemove"
+				foundItems: "<found",
+				onRemove:"&onRemove"
 			},
-			// restrict: 'E',
 			controller: FoundItemsDirectiveController,
 			bindToController: true,
 			controllerAs: 'ctrl',
@@ -77,10 +77,6 @@
 	};
 
 	function FoundItemsDirectiveController(){
-		var ctrl = this;
 
-		ctrl.foundItemsFromIS = function(){
-			return ctrl.foundItems;
-		}
 	};
 })();

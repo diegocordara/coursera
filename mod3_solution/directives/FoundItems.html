@@ -1,4 +1,5 @@
 <ul>
-	<li ng-repeat="item in ctrl.foundItemsFromIS">{{ item.name }} - {{ item.short_name }} - {{ item.description }}</li>
-	<!-- <button class="btn btn-primary" ng-click="ctrl.onRemove({index:$index})">Don't want this one!</button> -->
+	<li ng-repeat="item in ctrl.foundItems">{{ item.name }} - {{ item.short_name }} - {{ item.description }}
+		<button class="btn btn-primary" ng-click="ctrl.onRemove({index:$index})">Don't want this one!</button>
+	</li>
 </ul>
