@@ -68,15 +68,11 @@
 				foundItems: "<found",
 				onRemove:"&onRemove"
 			},
-			controller: FoundItemsDirectiveController,
+			controller: function(){},
 			bindToController: true,
 			controllerAs: 'ctrl',
 			templateUrl: 'directives/FoundItems.html'
 		};
 		return ddo;
-	};
-
-	function FoundItemsDirectiveController(){
-
 	};
 })();
