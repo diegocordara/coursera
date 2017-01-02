@@ -1,5 +1,9 @@
-<ul>
-	<li ng-repeat="item in ctrl.foundItems">{{ item.name }} - {{ item.short_name }} - {{ item.description }}
+<ul class="list-group row">
+	<li class="list-group-item" ng-repeat="item in ctrl.foundItems">
+		<p>Name: {{ item.name }}</p>
+		<p>ShortName: {{ item.short_name }}</p>
+		<p>Description: {{ item.description }}</p>
 		<button class="btn btn-primary" ng-click="ctrl.onRemove({index:$index})">Don't want this one!</button>
-	</li>
+	</li>	
 </ul>
+<p class="red" ng-if="!ctrl.foundItems.length > 0 && ctrl.dirty">{{ ctrl.nothingFoundMsg }}</p>

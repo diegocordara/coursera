@@ -4,27 +4,29 @@
 	angular.module('NarrowItDownApp',[])
 	.controller('NarrowItDownController',NarrowItDownCtrl)
 	.service('MenuSearchService',MenuSearchSvc)
-	.constant('MenuRestAPI','https://davids-restaurant.herokuapp.com/menu_items.json')
+	.constant('MenuRestAPIURL','https://davids-restaurant.herokuapp.com/menu_items.json')
 	.filter('menu',MenuFilterFactory)
 	.directive('foundItems',FoundItemsDirective);
 
-	NarrowItDownCtrl.$inject = ['$scope','MenuSearchService'];
-	function NarrowItDownCtrl($scope,MenuSearchService){
+	NarrowItDownCtrl.$inject = ['MenuSearchService'];
+	function NarrowItDownCtrl(MenuSearchService){
 		var searcher = this;
 		var service = MenuSearchService;
 
 		searcher.searchTerm = "";
-		searcher.found;
+		searcher.found = [];
+		searcher.dirty = false;
+
 		searcher.find = function(){
-			service.getMatchedMenuItems(searcher.searchTerm)
-			.then(function(data){
-				if(typeof(data.status) != 'undefined'){
-					console.log("Error: ",data.status + " " + data.statusText);
-				}else{
-					console.log(data);
+			if(searcher.searchTerm){
+				service.getMatchedMenuItems(searcher.searchTerm)
+				.then(function(data){				
 					searcher.found = data;
-				}
-			});
+				});
+			}else{
+				searcher.dirty = true;
+				searcher.found = [];
+			}
 		};
 
 		searcher.remove = function(index){
@@ -32,23 +34,19 @@
 		}
 	};
 
-	MenuSearchSvc.$inject = ['MenuRestAPI','$http','menuFilter'];
-	function MenuSearchSvc(MenuRestAPI,$http,menuFilter){
+	MenuSearchSvc.$inject = ['MenuRestAPIURL','$http','menuFilter'];
+	function MenuSearchSvc(MenuRestAPIURL,$http,menuFilter){
 		var service = this;
 		var filter = menuFilter;
 
 		service.getMatchedMenuItems = function(searchTerm){
-			var promise = $http({
-				url:MenuRestAPI
-			}).then(function(response){
-					return filter(searchTerm,response.data.menu_items);
-				},function(response){
-					return response;
-				});
-			return promise;
+			return $http({
+				url:MenuRestAPIURL
+			})
+			.then(function(response){
+				return filter(searchTerm,response.data.menu_items);
+			});
 		};
-
-		return service;
 	}
 
 	function MenuFilterFactory(){
@@ -66,9 +64,13 @@
 		var ddo = {
 			scope:{
 				foundItems: "<found",
-				onRemove:"&onRemove"
+				onRemove:"&",
+				dirty:"<"
 			},
-			controller: function(){},
+			controller: function(){
+				var ctrl = this;
+				ctrl.nothingFoundMsg = "Nothing found";
+			},
 			bindToController: true,
 			controllerAs: 'ctrl',
 			templateUrl: 'directives/FoundItems.html'

@@ -7,8 +7,8 @@
 	.controller('AlreadyBoughtController',AlreadyBoughtCtrl)
 	.service('ShoppingListCheckOffService',ShoppingListCheckOffSvc);
 
-	ToBuyCtrl.$inject=['$scope','ShoppingListCheckOffService'];
-	function ToBuyCtrl($scope,ShoppingListCheckOffService){
+	ToBuyCtrl.$inject=['ShoppingListCheckOffService'];
+	function ToBuyCtrl(ShoppingListCheckOffService){
 		var ToBuy = this;
 		var service = ShoppingListCheckOffService; 
 		ToBuy.List = service.toBuyList;
@@ -17,8 +17,8 @@
 		}
 	};
 
-	AlreadyBoughtCtrl.$inject = ['$scope','ShoppingListCheckOffService'];
-	function AlreadyBoughtCtrl($scope,ShoppingListCheckOffService){
+	AlreadyBoughtCtrl.$inject = ['ShoppingListCheckOffService'];
+	function AlreadyBoughtCtrl(ShoppingListCheckOffService){
 		var Bought = this;
 		var service = ShoppingListCheckOffService;
 		Bought.List = service.boughtList;
@@ -35,11 +35,13 @@
 		];
 		service.boughtList = [];
 
-		service.AddBoughtListItem = function(item){
-			service.boughtList.push(item);
-		};
+		/*Modified according to the review feedback*/
+		// service.AddBoughtListItem = function(item){
+		// 	service.boughtList.push(item);
+		// };
 		service.RemoveToBuyListItem = function(index){
-			service.AddBoughtListItem(service.toBuyList[index]);
+			//service.AddBoughtListItem(service.toBuyList[index]);
+			service.boughtList.push(service.toBuyList[index]);
 			service.toBuyList.splice(index,1);
 		};
 		return service;
