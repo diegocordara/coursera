@@ -23,10 +23,10 @@
 				.then(function(data){				
 					searcher.found = data;
 				});
-			}else{
-				searcher.dirty = true;
+			}else{				
 				searcher.found = [];
 			}
+			searcher.dirty = true;
 		};
 
 		searcher.remove = function(index){
@@ -67,14 +67,28 @@
 				onRemove:"&",
 				dirty:"<"
 			},
-			controller: function(){
-				var ctrl = this;
-				ctrl.nothingFoundMsg = "Nothing found";
-			},
+			controller: FoundItemsDirectiveController,
 			bindToController: true,
 			controllerAs: 'ctrl',
 			templateUrl: 'directives/FoundItems.html'
 		};
 		return ddo;
 	};
+
+	function FoundItemsDirectiveController(){
+		var ctrl = this;
+		ctrl.nothingFoundMsg = "Nothing found";
+
+		ctrl.remove = function(index){
+			ctrl.onRemove(index);
+		};
+
+		ctrl.getFoundItems = function(){
+			return ctrl.foundItems;
+		};
+
+		ctrl.isDirty = function(){
+			return ctrl.dirty;
+		}
+	}
 })();
