@@ -22,11 +22,12 @@
 				service.getMatchedMenuItems(searcher.searchTerm)
 				.then(function(data){				
 					searcher.found = data;
+					searcher.dirty = true;
 				});
 			}else{				
 				searcher.found = [];
-			}
-			searcher.dirty = true;
+				searcher.dirty = true;
+			}			
 		};
 
 		searcher.remove = function(index){
