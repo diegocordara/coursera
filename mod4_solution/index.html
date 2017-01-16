@@ -1,25 +1,26 @@
 <!doctype html>
 <html lang="en" ng-app="MenuApp">
+
 <head>
+    <base href="/mod4_solution/">
     <title>Restaurant X</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-ui-router.min.js"></script>
-
-    <script src="js/module/menuapp.module.js"></script>
-    <script src="js/module/data.module.js"></script>
-
-    <script src="js/route/routes.js"></script>
-    <script src="js/controller/categories.controller.js"></script>
-    <script src="js/component/categories.component.js"></script>
-    <script src="js/service/menudata.service.js"></script>
 </head>
 
-<body>
-    <h1>Welcome to our restaurant!</h1>
+<body>    
     <ui-view></ui-view>
 </body>
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-ui-router.min.js"></script>
+
+<script src="js/module/menuapp.module.js"></script>
+<script src="js/module/data.module.js"></script>
+
+<script src="js/route/routes.js"></script>
+<script src="js/controller/categories.controller.js"></script>
+<script src="js/component/categories.component.js"></script>
+<script src="js/service/menudata.service.js"></script>
 
 </html>

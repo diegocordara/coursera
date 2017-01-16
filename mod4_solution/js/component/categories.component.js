@@ -2,9 +2,8 @@
     'use_strict';
 
     angular.module('MenuApp')
-    .component('Categories',{
-        // templateUrl:'template/component/categories.html',
-        template:'hola mundo',
+    .component('categories',{
+        templateUrl:'template/component/categories.html',        
         bindings:{
             data: '<'
         }

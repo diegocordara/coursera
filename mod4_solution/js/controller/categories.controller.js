@@ -1,18 +1,12 @@
-(function(){
+(function () {
     'use_strict';
 
     angular.module('MenuApp')
-    .controller('CategoriesCtrl',CategoriesCtrlFn);
+        .controller('CategoriesController', CategoriesCtrlFn);
 
     CategoriesCtrlFn.$inject = ['resolvedCategories'];
     function CategoriesCtrlFn(resolvedCategories){
         var controller = this;
-
-        controller.data = resolvedCategories.then(function(data){
-            return data;
-        },function(error){
-            console.error("xhr error", error);
-        });
-
+        controller.data = resolvedCategories;
     }
 })();
