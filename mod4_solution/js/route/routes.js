@@ -8,9 +8,7 @@
     RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
     function RoutesConfig($stateProvider,$urlRouterProvider,$locationProvider) {
 
-        //$locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/home');
-        //$urlRouterProvider.when('/','/home');
 
         $stateProvider
             .state('home', {
