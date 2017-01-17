@@ -1,0 +1,10 @@
+<div class="col-md-4" ng-repeat="item in $ctrl.data">
+    <div class="panel panel-default">
+        <div class="panel-heading">{{item.name}}<span class="label label-primary pull-right">{{item.short_name}}</span></div>
+        <div class="panel-body">
+            <p>{{item.description}}</p>
+            <p>Small Portion: {{item.small_portion_name}} <span class="label label-success pull-right">{{item.price_small | currency}}</span></p>
+            <p>Large Portion: {{item.large_portion_name}} <span class="label label-success pull-right">{{item.price_large | currency}}</span></p>
+        </div>
+    </div>
+</div>

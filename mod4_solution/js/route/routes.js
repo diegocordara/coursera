@@ -8,8 +8,9 @@
     RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
     function RoutesConfig($stateProvider,$urlRouterProvider,$locationProvider) {
 
-        $locationProvider.html5Mode(true);
-        $urlRouterProvider.otherwise('home'); 
+        //$locationProvider.html5Mode(true);
+        $urlRouterProvider.otherwise('/home');
+        //$urlRouterProvider.when('/','/home');
 
         $stateProvider
             .state('home', {
@@ -25,6 +26,16 @@
                         return MenuDataService.getAllCategories();
                     }]
                 }
-            });                      
+            })
+            .state('items',{
+                url: '/categories/{short_name}',
+                templateUrl: 'template/view/items.html',
+                controller: 'ItemsController as ctrl',
+                resolve: {
+                    resolvedCategoryItems: ['MenuDataService','$stateParams', function(MenuDataService,$stateParams){
+                        return MenuDataService.getItemsForCategory($stateParams.short_name);
+                    }]
+                }
+            });     
     }
 })();

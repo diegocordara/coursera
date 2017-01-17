@@ -23,10 +23,10 @@
                 });
         };
 
-        service.getItemsForCategory = function (categoryShortName) {
+        service.getItemsForCategory = function (categoryShortName) {            
             return $http.get(API.domain + API.items + '?category=' + categoryShortName)
                 .then(function (response) {
-                    return response.data;
+                    return response.data.menu_items;
                 },
                 function (error) {
                     console.error("getItemsForCategoryXhr error", error);
