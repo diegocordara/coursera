@@ -119,6 +119,15 @@ a[ui-sref="admin.auth"] {
 }
 /* END FOOTER */
 
+/* FORM VALIDATIONS */
+.ng-touched.ng-valid{
+  border:1px green solid;
+}
+.ng-touched.ng-invalid{
+  border: 1px red solid; 
+}
+/* END FORM VALIDATIONS*/
+
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
   /* Header */
