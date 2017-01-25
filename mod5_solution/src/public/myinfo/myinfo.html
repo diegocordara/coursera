@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="panel panel-default" ng-if="myinfoCtrl.registeredUser">
+        <div class="panel-heading">Registered User</div>
+        <div class="panel-body">
+            <p>First name: {{myinfoCtrl.registeredUser.firstName}}</p>
+            <p>Last name: {{myinfoCtrl.registeredUser.lastName}}</p>
+            <p>Email address: {{myinfoCtrl.registeredUser.email}}</p>
+            <p>Telephone number: {{myinfoCtrl.registeredUser.telephone}}</p> 
+            <div class="panel panel-default">
+                <div class="panel-heading">Favorite Menu Item</div>
+                <div class="panel-body">
+                    <p>{{myinfoCtrl.registeredUser.favoriteDish.name}}<span class="label label-primary">{{myinfoCtrl.registeredUser.favoriteDish.short_name}}</span></p>
+                    <p>{{myinfoCtrl.registeredUser.favoriteDish.description}}</p>
+                    <img ng-src="{{myinfoCtrl.imagesPath}}{{myinfoCtrl.registeredUser.favoriteDish.short_name}}.jpeg">
+                </div>
+            </div>       
+        </div>
+    </div>
+{{myinfoCtrl.registeredUser}}
+    <div class="alert alert-danger" ng-if="!myinfoCtrl.registeredUser" role="alert">
+        Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></div>
+</div>
