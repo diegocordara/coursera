@@ -10,7 +10,7 @@
         var service = MenuData;
 
         controller.favDishErrMsg = '';
-        controller.successSignUp = false;        
+        controller.successSignUp = false;
 
         var registeredUser = {
             firstName: '',
@@ -24,10 +24,10 @@
 
         controller.signUp = function () {
             if (controller.registeredUser.favoriteDish) {
-                service.getMenuItem(controller.registeredUser.favoriteDish)
+                service.getMenuItem(controller.registeredUser.favoriteDish.toUpperCase())
                     .then(function (response) {
                         controller.registeredUser.favoriteDish = response.data;
-                        service.setRegisteredUser(controller.registeredUser);                                                                        
+                        service.setRegisteredUser(controller.registeredUser);
                         controller.successSignUp = true;
                         $scope.signupForm.$setUntouched();
                         controller.registeredUser = angular.copy(registeredUser);

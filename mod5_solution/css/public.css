@@ -127,7 +127,12 @@ span.input-error{
   color: red;
 }
 /* END SIGN UP PAGE */
-
+.panel-body{
+	color:black;
+}
+.m10{
+  margin:10px;
+}
 /* MY INFO PAGE*/
 
 /* END MY INFO PAGE*/
