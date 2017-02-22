@@ -1,9 +1,0 @@
-<ul class="list-group row">
-	<li class="list-group-item" ng-repeat="item in ctrl.getFoundItems()">
-		<p>Name: {{ item.name }}</p>
-		<p>ShortName: {{ item.short_name }}</p>
-		<p>Description: {{ item.description }}</p>
-		<button class="btn btn-primary" ng-click="ctrl.remove({index:$index})">Don't want this one!</button>
-	</li>	
-</ul>
-<p class="red" ng-if="!ctrl.getFoundItems().length > 0 && ctrl.isDirty()">{{ ctrl.nothingFoundMsg }}</p>
